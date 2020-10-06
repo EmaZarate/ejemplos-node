@@ -1,0 +1,6 @@
+<div class="picture-container" [ngClass]="containerEnabled()">
+  <div class="picture" [ngClass]="pictureEnabled()">
+    <img [src]="imageSource" [ngClass]="pictureDefaultWidth()" class="picture-src" id="wizardPicturePreview" title="" />
+    <input type="file" [disabled]="disabled" *ngIf="!disabled" (change)="onPictureSelected($event)" id="wizard-picture">
+  </div>
+</div>

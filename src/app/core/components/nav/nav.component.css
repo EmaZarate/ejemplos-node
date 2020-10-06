@@ -1,0 +1,81 @@
+  .profile-section {
+    background: #673ab7;
+    min-height: 80px;
+  }
+
+  .sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    width: 250px;
+    margin-top:64px;
+  }
+  
+  .title{
+    padding-left: 20px;
+  }
+  
+  .navbar{
+    position: fixed;
+    top:0;
+    z-index: 9;
+    flex-direction: column-reverse;
+  }
+  
+  span{
+    cursor: pointer;
+  }
+
+  .margin-container{
+    width: 75%;
+    margin: auto;
+    margin-top: 100px;
+  }
+
+  .progress-bar{
+    z-index: 15;
+    display: flex;
+  }
+
+.icon_menu{
+  padding-right: 15px;
+}
+
+.person {
+  color: white;
+}
+
+#cerrar_session {
+  color: white;
+}
+
+.logo-andina {
+  position: relative;
+  margin-top: 10px;
+  left: 30px;
+  width: 50px;
+}
+
+.logo-andina:focus{
+  outline: none;
+}
+
+.first {
+  background-color: white;
+}
+
+.first:hover {
+  background-color: #673ab7;
+  color: white;
+}
+
+.is-active {
+  background-color: #673ab7;
+  color: white;
+}
+
+.active:hover{ 
+  background-color: #673ab7;
+  color: white;
+}

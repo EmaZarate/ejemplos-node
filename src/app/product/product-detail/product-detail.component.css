@@ -1,0 +1,12 @@
+.full-width {
+    width: 95%;
+}
+
+.content-detail {
+    display: flex;
+    justify-content: space-around;
+}
+
+.width-list {
+    width: 70%;
+}

@@ -1,0 +1,15 @@
+<app-form-layout [info]="formInfo" (submitEvent)="onSubmit()">
+  <form [formGroup]="updateStateForm">
+      <p>Pasarás esta orden a estado 
+        <ng-container [ngSwitch]="orderState">
+          <b *ngSwitchCase="'confirmed'">PAGADO</b>
+          <b *ngSwitchCase="'canceled'">CANCELADO</b>
+          <b *ngSwitchCase="'deliver'">EN REPARTO</b>
+          <b *ngSwitchCase="'deliverready'">LISTO PARA RETIRAR</b>
+          <b *ngSwitchCase="'give'">ENTREGADO</b>
+          <b *ngSwitchCase="'canceledforuser'">RECHAZADO POR CLIENTE</b>
+          <b *ngSwitchDefault=""></b>
+        </ng-container>. ¿Estás seguro?.
+      </p>
+  </form>
+</app-form-layout>

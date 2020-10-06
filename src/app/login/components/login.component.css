@@ -1,0 +1,47 @@
+span {
+    top: 8px;
+    position: relative;
+    right: 8px;
+}
+
+mat-card {
+    padding: 50px;
+    box-shadow: 8px 8px 9px -5px black;
+}
+
+.row {
+    padding-top: 20vh;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    width: 100px; 
+    height: 100px;
+    margin-left: 52px;
+}
+
+.button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.card-body {
+    padding-top: 15px;
+}
+
+span i {
+    color: #F9C03F;
+}
+
+button {
+    font-weight: bold;
+    font-size: 15px;
+    background-color:#F9C03F; 
+    color:#656567;
+}

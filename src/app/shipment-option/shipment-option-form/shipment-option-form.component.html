@@ -1,0 +1,18 @@
+<app-form-layout [info]="formInfo" (submitEvent)="onSubmit()">
+  <form [formGroup]="shipmentOptionForm">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Ingrese el nombre de la opción de envío" [formControl]="name">
+      <mat-error *ngIf="name.hasError('required')">
+        El nombre de la opción de envío es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-label class="label-slider">Porcentual a aplicar</mat-label>
+    <mat-slider (input)="onUpdateSlider($event.value)" color="accent" formControlName="slider" class="slider-margin" [max]="200" [min]="0" [step]="1"
+      [thumbLabel]="true">
+    </mat-slider>
+    <mat-hint *ngIf="slider.value == 100">Con el porcentaje <strong>100%</strong> el precio de la orden será el mismo al seleccionar ésta opción</mat-hint>
+    <mat-hint *ngIf="slider.value > 100">Con el porcentaje <strong>{{slider.value}}%</strong> el precio de la orden tendrá un cargo al seleccionar ésta opción</mat-hint>
+    <mat-hint *ngIf="slider.value < 100">Con el porcentaje <strong>{{slider.value}}%</strong> el precio de la orden tendrá un descuento al seleccionar ésta opción</mat-hint>
+  </form>
+</app-form-layout>

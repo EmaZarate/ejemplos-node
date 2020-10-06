@@ -1,0 +1,114 @@
+<mat-card class="card-accordion mat-elevation-z5">
+  <mat-card-title>
+    <div class="header">
+      <div class="title">
+        Empaques
+      </div>
+      <div class="add-button">
+        <button mat-mini-fab aria-label="Add new registry" (click)="addNewPacking()" matTooltip="Agregar" [matTooltipPosition]="'above'">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-title>
+  <mat-card-content>
+
+
+    <mat-accordion *ngIf="product.packings.length > 0">
+      <form [formGroup]="packingForm">
+        <mat-expansion-panel *ngFor="let el of product.packings; let i = index" formArrayName="packings">
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{el.name}} - Cantidad: x{{el.quantity}}</mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-panel-description>
+            <div class="body-accordion">
+              <div [formGroupName]="i">
+
+                <div class="header">
+                  <div class="title">
+                    Listas de precios
+                  </div>
+                  <div>
+                    <button *ngIf="isEditingPriceList" mat-icon-button aria-label="Add new registry"
+                      (click)="addPriceList(i)" matTooltip="Agregar" [matTooltipPosition]="'above'">
+                      <mat-icon class="color-save">add</mat-icon>
+                    </button>
+                    <button *ngIf="!isEditingPriceList" mat-icon-button aria-label="Update price list" (click)="changePackingFormState()" matTooltip="Editar" [matTooltipPosition]="'above'">
+                      <mat-icon class="color-edit">edit</mat-icon>
+                    </button>
+                        <button *ngIf="isEditingPriceList" mat-icon-button aria-label="Update price list" (click)="updatePacking(i)" matTooltip="Guardar" [matTooltipPosition]="'above'">
+                          <mat-icon class="color-edit">save</mat-icon>
+                    </button>
+                    <button *ngIf="!isEditingPriceList" mat-icon-button aria-label="Delete packing" (click)="deletePacking(el)" matTooltip="Eliminar" [matTooltipPosition]="'above'">
+                      <mat-icon class="color-remove">delete</mat-icon>
+                    </button>
+                    <button *ngIf="isEditingPriceList" mat-icon-button aria-label="Cancel editing" (click)="cancelEditing()" matTooltip="Cancelar" [matTooltipPosition]="'above'">
+                      <mat-icon class="color-remove">close</mat-icon>
+                    </button>
+                  </div>
+                </div>
+
+                <div formArrayName="priceLists"
+                  *ngFor="let priceList of packingForm.controls.packings.controls[i].get('priceLists').controls; let j = index">
+                  <div [formGroupName]="j" class="form">
+
+                    <mat-form-field>
+                      <mat-label>
+                        Lista de precio
+                      </mat-label>
+                      <mat-select formControlName="id">
+                        <mat-option *ngFor="let priceList of priceLists" [value]="priceList.id">
+                          {{priceList.code}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <input formControlName="price" type="number" matInput placeholder="Precio">
+                    </mat-form-field>
+
+                    <button *ngIf="isEditingPriceList" class="btn-delete" mat-icon-button aria-label="Add new registry"
+                      (click)="removePriceList(i,j)" matTooltip="Eliminar" [matTooltipPosition]="'above'">
+                      <mat-icon class="color-remove">delete</mat-icon>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </mat-panel-description>
+          <!-- <mat-action-row>
+            <button mat-button color="warn" (click)="deletePacking(el)">Eliminar empaque</button>
+          </mat-action-row> -->
+        </mat-expansion-panel>
+      </form>
+    </mat-accordion>
+
+    <p *ngIf="product.packings.length == 0">No hay empaques en este producto, comience creando uno utilizando el botón
+      de agregar</p>
+  </mat-card-content>
+
+  <mat-card-footer>
+    <form *ngIf="isAddingPacking">
+      <div class="form-packing">
+        <mat-form-field>
+          <input [formControl]="newPackingName" matInput placeholder="Nombre del empaque">
+        </mat-form-field>
+        <mat-form-field>
+          <input [formControl]="newPackingQuantity" matInput type="number" placeholder="Cantidad por empaque">
+        </mat-form-field>
+        <div class="actions">
+          <button mat-icon-button matTooltip="Guardar" [matTooltipPosition]="'above'">
+            <mat-icon class="color-edit" (click)="submitNewPacking()">save</mat-icon>
+          </button>
+          <button mat-icon-button (click)="cancelNewPacking()" matTooltip="Cancelar" [matTooltipPosition]="'above'">
+            <mat-icon class="color-remove">close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-footer>
+</mat-card>

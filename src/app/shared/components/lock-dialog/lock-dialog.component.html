@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Está seguro de {{data.isLocking ? 'bloquear' : 'desbloquear'}} la cuenta de {{data.name}}</h2>
+<mat-dialog-content class="mat-typography"><span>Puede {{data.isLocking ? 'desbloquearlo' : 'bloquearlo'}} más
+    tarde</span></mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">Continuar</button>
+</mat-dialog-actions>

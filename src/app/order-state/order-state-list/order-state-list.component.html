@@ -1,0 +1,3 @@
+<app-list-layout [title]="'Estados de una orden'" [subtitle]="'Todos los posibles estados de una orden'" [canAdd]="false">
+    <app-table *ngIf="data.length>0" [tableData]="tableData"></app-table>
+</app-list-layout>

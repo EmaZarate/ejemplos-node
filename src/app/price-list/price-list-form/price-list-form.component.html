@@ -1,0 +1,16 @@
+<app-form-layout [info]="formInfo" (submitEvent)="onSubmit()">
+  <form [formGroup]="priceListForm">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Ingrese el código de la lista de precios" [formControl]="code">
+      <mat-error *ngIf="code.hasError('required')">
+        El código de la lista de precios es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Ingrese el límite mínimo de compra de la lista de precios" type="number" [formControl]="minimumLimit">
+      <mat-error *ngIf="minimumLimit.hasError('required')">
+        El límite mínimo de compra de la lista de precios es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</app-form-layout>

@@ -1,0 +1,13 @@
+<mat-card mat-ripple class="card" (click)="navigateRelative()">
+  <mat-card-header>
+    <div mat-card-avatar class="avatar-icon">
+      <mat-icon class="avatar-icon__icon">{{cardInfo.icon}}</mat-icon>
+    </div>
+    <mat-card-title>
+      {{cardInfo.title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      <div>{{cardInfo.content}}</div>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

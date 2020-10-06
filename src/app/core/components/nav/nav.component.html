@@ -1,0 +1,47 @@
+<mat-toolbar color="primary" class="navbar mat-elevation-z5">
+  <mat-toolbar-row>
+    <button type="button" aria-label="Toggle sidenav" mat-mini-fab (click)="drawer.toggle()" matTooltip="Menú" [matTooltipPosition]="'above'">
+      <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon>
+    </button>
+
+    <span>
+      <img [routerLink]="['/orders']" class="logo-andina" src="./assets/final.png" alt="Logo Andina">
+    </span>
+
+  </mat-toolbar-row>
+  <mat-progress-bar *ngIf="loading" class="progress-bar" mode="indeterminate" color="accent"></mat-progress-bar>
+
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [mode]="'over'" [opened]="(isHandset$ | async)">
+    <div color="primary" class="profile-section">
+      <mat-nav-list>
+          <a (click)="logout()" mat-list-item id="cerrar_session"><mat-icon class="icon_menu person">person</mat-icon>Cerrar sesión</a>
+      </mat-nav-list>
+    </div>
+    <mat-nav-list>
+
+      <h2 matSubheader>Administración</h2>
+      <a class="first active" mat-list-item [routerLink]="['/category']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">category</mat-icon>Categorías</a>
+      <a class="active" mat-list-item [routerLink]="['/shipment']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">local_shipping</mat-icon>Opciones de envío</a>
+      <a class="active" mat-list-item [routerLink]="['/states']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">all_inbox</mat-icon>Estados de orden</a>
+      <a class="active" mat-list-item [routerLink]="['/payment']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">credit_card</mat-icon>Opciones de pago</a>
+      <a class="active" mat-list-item [routerLink]="['/prices']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">apps</mat-icon>Listas de precios</a>
+      <a class="active" mat-list-item [routerLink]="['/product']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">shopping_basket</mat-icon>Productos</a>
+      <a class="active" mat-list-item [routerLink]="['/orders']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">assignment</mat-icon>Órdenes</a>
+      <a class="active" mat-list-item [routerLink]="['/customer']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">group</mat-icon>Clientes</a>
+      <a class="active" mat-list-item [routerLink]="['/sales']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">attach_money</mat-icon>Promociones</a>
+      <a class="active"mat-list-item [routerLink]="['/import']" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"><mat-icon class="icon_menu">import_export</mat-icon>Importación</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <main class="margin-container">
+        <router-outlet></router-outlet>
+    </main>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

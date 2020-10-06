@@ -1,0 +1,11 @@
+.containerDetailOrder div{
+    margin-bottom: 15px;
+    color: rgba(0,0,0,.54);
+}
+section{
+    display:flex;
+    flex-direction: column;
+}
+.actions {
+    margin-top: 20px;
+}

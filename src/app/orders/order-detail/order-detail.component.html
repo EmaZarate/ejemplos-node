@@ -1,0 +1,24 @@
+<app-list-layout [title]="title" [canAdd]="false">
+  <section>
+    <div class="containerDetailOrder">
+      <div>
+        <label class="detail1">Razón social: <strong>{{businessName}}</strong></label>
+      </div>
+      <div>
+        <label>Dirección de sucursal: <strong>{{branchAddress}}</strong></label>
+      </div>
+      <div>
+        <label>Forma de pago: <strong>{{paidType}}</strong></label>
+      </div>
+      <div>
+        <label>Opción de envío: <strong>{{shipmentOption}}</strong></label>
+      </div>
+    </div>
+    <div>
+      <app-table *ngIf="data.items.length > 0" [tableData]="tableData"></app-table>
+    </div>
+    <div class="actions">
+      <button mat-raised-button [routerLink]="['../../']">Volver</button>
+    </div>
+  </section>
+</app-list-layout>

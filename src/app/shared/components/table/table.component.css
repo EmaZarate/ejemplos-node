@@ -1,0 +1,11 @@
+.mat-column-acciones {
+  display: flex;
+  justify-content: flex-end;
+}
+.mat-header-cell.mat-column-acciones{
+  padding-right:35px;
+}
+
+table {
+    width: 100%;
+}

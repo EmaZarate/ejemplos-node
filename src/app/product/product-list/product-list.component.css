@@ -1,0 +1,21 @@
+.container-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+}
+
+
+
+card-product{
+    display: flex;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.filter{
+    width: 90%;
+    margin-left:5%;
+}

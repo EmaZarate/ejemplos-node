@@ -1,0 +1,48 @@
+<div matRipple class="mat-elevation-z5 container-card">
+  <mat-card [ngClass]="{'hover': !canEdit}">
+    <mat-card-title>
+      <div class="card-title">
+        <span class="card-title__span" *ngIf="!isEditing">{{product?.name | titlecase}}</span>
+
+
+        <div [ngClass]="{'actions': isEditing}">
+          <button *ngIf="!isEditing && canDelete" (click)="openDialog(product?.name, product?.id)" color="warn" mat-icon-button aria-label="remove" matTooltip="Eliminar" [matTooltipPosition]="'above'">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button *ngIf="canEdit" (click)="updateState()" mat-icon-button matTooltip="{{isEditing ? 'Guardar' : 'Editar'}}" [matTooltipPosition]="'above'">
+            <mat-icon class="color-edit">{{isEditing ? 'save' : 'edit'}}</mat-icon>
+          </button>
+          <button *ngIf="canEdit && isEditing" (click)="cancelEditing()" mat-icon-button matTooltip="Cancelar" [matTooltipPosition]="'above'">
+            <mat-icon class="color-remove">close</mat-icon>
+          </button>
+        </div>
+      </div>
+
+    </mat-card-title>
+    <mat-card-subtitle>
+
+      <mat-form-field *ngIf="isEditing">
+        <input [formControl]="nameControl" matInput placeholder="Nombre del producto">
+      </mat-form-field>
+      <mat-form-field *ngIf="isEditing">
+        <input [formControl]="skuControl" matInput placeholder="SKU">
+      </mat-form-field>
+      <span *ngIf="!isEditing">Categoría: {{product?.category?.name}}</span>
+      <mat-form-field *ngIf="isEditing">
+        <mat-label>Categoría</mat-label>
+        <mat-select [formControl]="categoryControl">
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-subtitle>
+    <app-image-picker [imgParent]="product?.img" [disabled]="!isEditing" (change)="imageUploaded($event)">
+    </app-image-picker>
+    <mat-card-content>
+      <label *ngIf="product?.packings.length > 0" class="packing-title">Empaques</label>
+      <p *ngFor="let packing of product?.packings" class="packing-item">{{packing.name | titlecase}}</p>
+    </mat-card-content>
+
+  </mat-card>
+</div>

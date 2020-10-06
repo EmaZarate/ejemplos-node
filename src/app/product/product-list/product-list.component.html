@@ -1,0 +1,9 @@
+<app-list-layout [title]="'Productos'" [subtitle]="'Todos los productos'" [canAdd]="true">
+  <mat-form-field class="filter">
+    <input [formControl]="filter" matInput placeholder="Filtrar productos...">
+  </mat-form-field>
+  <div class="container-cards">
+      <app-card-product class="fixed-height" (click)="goToDetail(product.id)" *ngFor="let product of products" [product]="product"></app-card-product>
+  </div>
+
+</app-list-layout>

@@ -1,0 +1,45 @@
+.color-edit{
+    color: #6c3eff;
+}
+
+.color-save{
+    color: green;
+}
+
+.color-remove {
+    color:red;
+}
+
+.body-accordion{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form-packing{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: space-around
+}
+
+.form{
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center; 
+}
+
+.full-width{
+    width: 100%;
+}
+
+.btn-delete{
+    padding-left: 14px;
+}

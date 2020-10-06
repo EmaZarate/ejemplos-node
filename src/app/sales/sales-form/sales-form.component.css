@@ -1,0 +1,64 @@
+.full-width{
+    width: 100%;
+}
+
+.container-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.center{
+    text-align: center
+}
+
+.margin-card{
+    margin-bottom: 0%
+}
+.margin-card-top{
+    margin-top: 2%
+}
+
+.color-edit{
+    color: #6c3eff;
+}
+
+.color-save{
+    color: green;
+}
+
+.color-remove {
+    color:red;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.none{
+    display: none;
+}
+
+.form{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center; 
+ }
+
+.actions {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.color-remove {
+    color:red;
+}
+
+.mat-form-field {
+    margin-right: 10px;
+}

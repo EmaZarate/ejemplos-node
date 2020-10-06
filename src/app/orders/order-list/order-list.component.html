@@ -1,0 +1,6 @@
+<app-list-layout [title]="'Listas de órdenes'" [subtitle]="'Órdenes de clientes'" [canAdd]="false">
+  <mat-form-field class="filter">
+    <input [formControl]="filter" matInput placeholder="Filtrar órdenes...">
+  </mat-form-field>
+  <app-table *ngIf="data.length > 0" [tableData]="tableData"></app-table>
+</app-list-layout>

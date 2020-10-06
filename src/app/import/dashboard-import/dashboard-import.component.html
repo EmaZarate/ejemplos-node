@@ -1,0 +1,8 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Importaciones</h1>
+  <mat-grid-list cols="3" rowHeight="150px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" *ngFor="let option of dashboardOptions">
+      <app-card-sm-dashboard  [cardInfo]="option"></app-card-sm-dashboard>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

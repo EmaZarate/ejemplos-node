@@ -1,0 +1,10 @@
+<app-form-layout [info]="formInfo" (submitEvent)="onSubmit()">
+  <form [formGroup]="orderStateForm">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Ingrese el nombre del estado de la orden" [formControl]="name">
+      <mat-error *ngIf="name.hasError('required')">
+        El estado de la orden es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</app-form-layout>

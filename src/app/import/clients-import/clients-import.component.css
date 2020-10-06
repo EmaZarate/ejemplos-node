@@ -1,0 +1,42 @@
+.file-field {
+    width: 70%;
+}
+
+.file-row {
+    margin: 30px;
+}
+
+.spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.spinner__text{
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.import-action {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.import-result__title {
+    font-size: 18px;
+}
+
+.import-result__ul {
+    list-style: circle;
+    margin-left: 4%;
+}
+
+.import-result__ul li {
+    margin-top: 1%;
+}
+
+.import-result__errors {
+    font-size: 16px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}

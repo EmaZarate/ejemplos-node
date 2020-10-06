@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-title>Detalle del producto</mat-card-title>
+  <mat-card-content>
+    <div class="content-detail">
+        <app-card-product 
+          (finishEdit)="updateProduct($event)"
+          (stillEditingProduct)="setProductEditingState($event)" 
+          [product]="product" 
+          [canEdit]="true"
+          [canDelete]="true"
+          [categories]="categories">
+        </app-card-product>
+      <app-packing-list *ngIf="isEditing"
+        (newPackingEmitter)="onPackingCreated()"
+        (stillEditingPacking)="setPackingEditingState($event)" 
+        (hasPackings)="checkForPackings($event)"
+        (hasPriceListItems)="checkForPriceListItems($event)"
+        [product]="product" 
+        [isEditing]="isEditing"
+        class="width-list">
+      </app-packing-list>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" [matTooltipPosition]="'above'">Volver</button>
+  </mat-card-actions>
+</mat-card>

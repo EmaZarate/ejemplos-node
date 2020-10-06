@@ -1,0 +1,16 @@
+.card{
+    cursor: pointer;
+    margin: 10px;
+    height: 91px;
+}
+
+.avatar-icon{
+    background: rgb(103, 58, 183);
+    padding: 10px;
+    align-self: center;
+}
+
+.avatar-icon__icon {
+    font-size: 40px;
+    color: white;
+}

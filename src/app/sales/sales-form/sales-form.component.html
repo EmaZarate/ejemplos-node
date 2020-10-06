@@ -1,0 +1,83 @@
+<mat-card>
+  <mat-card-title>Nueva Promoción</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="salesForm" class="center">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Ingrese el nombre de la promoción" [formControl]="name">
+      </mat-form-field>
+    </form>
+    <mat-card class="margin-card">
+      <mat-card-subtitle>Seleccione Producto</mat-card-subtitle>
+      <form [formGroup]="salePackingForm" class="center">
+        <mat-form-field>
+          <mat-label>
+            Producto
+          </mat-label>
+          <mat-select [formControl]="product">
+            <mat-option *ngFor="let product of products" [value]="product.id"
+              [ngClass]="havePackage(product.packings.length)">
+              {{product.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>
+            Empaquetado
+          </mat-label>
+          <mat-select [formControl]="packing">
+            <mat-option *ngFor="let packing of packingsForProduct" [value]="packing.id">
+              {{packing.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Ingrese Cantidad" type="number" [formControl]="quantity">
+        </mat-form-field>
+        <button mat-mini-fab aria-label="Add new registry" matTooltip="Agregar" [matTooltipPosition]="'above'" (click)="addNewPacking()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </form>
+      <app-list-layout [canAdd]="false">
+          <app-table [tableData]="tableData"></app-table>
+        </app-list-layout>
+    </mat-card>
+
+    <mat-card class="margin-card-top">
+      <mat-card-subtitle>Lista de precios  
+        <button mat-icon-button aria-label="Add new registry" matTooltip="Agregar" [matTooltipPosition]="'above'" (click)="addPriceList()">
+          <mat-icon class="color-save">add</mat-icon>
+        </button>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div [formGroup]="priceListForm" class="form">
+          <div formArrayName="priceListArray">
+            <div *ngFor="let priceList of DynamicPriceListArray.controls; let j = index">
+              <div [formGroupName]="j" class="form">
+                <mat-form-field>
+                  <mat-label>
+                    Lista de precio
+                  </mat-label>
+                  <mat-select formControlName="priceListID" (selectionChange)="selectPriceList(j)">
+                    <mat-option *ngFor="let priceList of priceLists" [value]="priceList.id">
+                      {{priceList.code}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                  <input formControlName="price" type="number" matInput placeholder="Precio">
+                </mat-form-field>
+                <button mat-icon-button aria-label="Add new registry" matTooltip="Eliminar" [matTooltipPosition]="'above'" (click)="removePriceList(j)">
+                  <mat-icon class="color-remove">delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+  <mat-card-actions class="actions">
+    <button mat-raised-button [routerLink]="['/sales']">Volver</button>
+    <button mat-raised-button color="primary" (click)="saveSale()">Guardar</button>
+  </mat-card-actions>
+</mat-card>

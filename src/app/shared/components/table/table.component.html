@@ -1,0 +1,84 @@
+<div>
+  <mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="{{column}}" *ngFor="let column of tableData.headerRows">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{column | translateHeader: isPercent | titlecase}}</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngIf="column != 'mercadopagopaymentid'">
+          {{row[column] | translateBooleans}}
+        </div>
+        <div *ngIf="column == 'mercadopagopaymentid'">
+          <a href="https://www.mercadopago.com.ar/activities/1?q={{row[column]}}" target="_blank">{{row[column]}}</a>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+        <button *ngIf="tableData.canEdit" color="primary" (click)="navigateToEdit(row.id)" mat-icon-button
+          aria-label="edit" matTooltip="Editar" [matTooltipPosition]="'above'">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button *ngIf="tableData.canRemove" (click)="openDialog(row.name, row.id)" color="warn" mat-icon-button
+          aria-label="remove" matTooltip="Eliminar" [matTooltipPosition]="'above'">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button *ngIf="tableData.canUpdateState && row.mercadopagopaymentid != null && row.state == 'Esperando Pago' " [routerLink]="['/orders/', row.id,'updatestate', 'confirmed']" color="primary" mat-icon-button
+          aria-label="updateState" matTooltip="Confirmar pedido" [matTooltipPosition]="'above'">
+          <mat-icon>check</mat-icon>
+        </button>
+        <button mat-button *ngIf="row.state == 'Aceptado' && row.shipmentOptionID == 14" color="primary" mat-icon-button
+          aria-label="deliver" matTooltip="Despachar" [matTooltipPosition]="'above'"
+          [routerLink]="['/orders/', row.id,'updatestate', 'deliver']">
+          <mat-icon>delivery_dining</mat-icon>
+        </button>
+        <button mat-button *ngIf="row.state == 'Aceptado' && row.shipmentOptionID == 12" color="primary" mat-icon-button
+          aria-label="deliver" matTooltip="Listo para retirar" [matTooltipPosition]="'above'"
+          [routerLink]="['/orders/', row.id,'updatestate', 'deliverready']">
+          <mat-icon>card_giftcard</mat-icon>
+        </button>
+        <button mat-button *ngIf="row.state == 'En reparto' || row.state == 'Listo para retirar'" color="primary"
+          mat-icon-button aria-label="give" matTooltip="Entregado" [matTooltipPosition]="'above'"
+          [routerLink]="['/orders/', row.id,'updatestate', 'give']">
+          <mat-icon>check</mat-icon>
+        </button>
+        <button mat-button *ngIf="row.state == 'En reparto' || row.state == 'Listo para retirar'" color="warn"
+          mat-icon-button aria-label="cancel" matTooltip="Cancelado por el usuario" [matTooltipPosition]="'above'"
+          [routerLink]="['/orders/', row.id,'updatestate', 'canceledforuser']">
+          <mat-icon>remove_shopping_cart</mat-icon>
+        </button>
+        <button mat-button *ngIf="tableData.canSeeDetail" [routerLink]="['/orders/', row.id, 'orderdetail']"
+          color="accent" mat-icon-button aria-label="remove" matTooltip="Ver detalles"
+          [matTooltipPosition]="'above'">
+          <mat-icon>assignment</mat-icon>
+        </button>
+        <button *ngIf="tableData.canUpdateState && row.state == 'Esperando Pago'" color="warn" mat-icon-button matTooltip="Dar de baja el pedido"
+        aria-label="updateState" [matTooltipPosition]="'above'" [routerLink]="['/orders/', row.id,'updatestate', 'canceled']">
+          <mat-icon>delete</mat-icon>  
+        </button>
+        <button *ngIf="tableData.canLock"
+          (click)="openLockDialog(row[tableData.propertyToCheck], row.businessName, row.id)" color="warn"
+          mat-icon-button aria-label="remove"
+          matTooltip="{{row[tableData.propertyToCheck] ? 'Bloquear cliente' : 'Desbloquear cliente'}}"
+          [matTooltipPosition]="'above'">
+          <mat-icon>{{row[tableData.propertyToCheck] ? 'lock' : 'lock_open'}}</mat-icon>
+        </button>
+        <button mat-button *ngIf="tableData.canResetPassword" [routerLink]="['/customer/', row.id,'restartpassword']"
+          color="warn" mat-icon-button aria-label="remove" matTooltip="Restaurar Contraseña"
+          [matTooltipPosition]="'above'">
+          <mat-icon>cached</mat-icon>
+        </button>
+        
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+  </mat-table>
+  <mat-paginator class="mat-elevation-z8" #paginator [length]="itemsLength" [pageIndex]="0" [pageSize]="50"
+    [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
+
+
+</div>

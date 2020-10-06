@@ -1,0 +1,63 @@
+<mat-card>
+  <mat-card-title>
+    <div class="header">
+      <div class="title">
+        Importar clientes
+      </div>
+    </div>
+  </mat-card-title>
+  <mat-card-subtitle>
+    La importación de clientes automáticamente crearán los mismos en caso de no existir.
+    Todos los errores que puedan surgir durante la importación seran notificados la finalizar la misma.
+  </mat-card-subtitle>
+  <mat-card-content>
+    <div>
+      Para comenzar con la importación, suba el archivo a continuación.
+    </div>
+    <div class="file-row">
+      <mat-form-field class="file-field" >
+        <ngx-mat-file-input #fileInput [formControl]="fileControl" [accept]="'.xls, .xlsx'"
+          placeholder="Archivo de importación"></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+        <mat-error>Error: El archivo debe tener la extensión .xls o .xlsx</mat-error>
+      </mat-form-field>
+    </div>
+    <div *ngIf="!fileInput.empty && !isLoading && !importResults" class="import-action">
+      <button mat-button mat-raised-button color="primary" (click)="importFile()">Comenzar importación</button>
+    </div>
+    <div class="spinner" *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+      <div class="spinner__text">Procesando archivo...</div>
+    </div>
+
+    <!-- <div class="import-results" *ngIf="importResults">
+      <p class="import-result__title">La importación finalizo exitosamente y estos fueron los resultados:</p>
+      <mat-divider></mat-divider>
+      <ul class="import-result__ul">
+        <li>Clientes agregados: {{clientsAdded}}</li>
+      </ul>
+
+
+      <p class="import-result__errors" *ngIf="importResults && importResults.errors.length > 0">Errores: </p>
+      <mat-table class="mat-elevation-z8" [dataSource]="importResults.errors">
+        <ng-container matColumnDef="rowNum">
+          <mat-header-cell *matHeaderCellDef>Número de fila </mat-header-cell>
+          <mat-cell *matCellDef="let error">{{error.rowNum}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef>Tipo de error</mat-header-cell>
+          <mat-cell *matCellDef="let error">{{error.errorName}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+
+    <div *ngIf="importResults && importResults.errors.length == 0">
+      No se registraron errores, ¡Excelente!
+    </div> -->
+
+    <button mat-button [routerLink]="['../']">Volver</button>
+  </mat-card-content>
+</mat-card>

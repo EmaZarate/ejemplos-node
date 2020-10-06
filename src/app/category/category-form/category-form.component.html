@@ -1,0 +1,10 @@
+<app-form-layout [info]="formInfo" (submitEvent)="onSubmit()">
+  <form [formGroup]="categoryForm">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Ingrese el nombre de la categoría" [formControl]="name">
+      <mat-error *ngIf="name.hasError('required')">
+        La categoría es <strong>requerida</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</app-form-layout>
